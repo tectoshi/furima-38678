@@ -13,6 +13,7 @@
 | birth_month        | string | null: false         |
 | birth_day          | string | null: false         |
 
+
 ### Association
 
 - has_many :items
