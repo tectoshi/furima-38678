@@ -22,7 +22,7 @@
 | Column                | Type       | Options                            |
 | --------------------- | ---------- | ---------------------------------- |
 | name                  | string     | null: false                        |
-| discription           | text       | null: false                        |
+| description           | text       | null: false                        |
 | category_id           | integer    | null: false                        |
 | sales_status_id       | integer    | null: false                        |
 | fee_status_id         | integer    | null: false                        |
@@ -38,7 +38,7 @@
 - has_one :purchase
 
 
-## Purchasesテーブル
+## purchasesテーブル
 
 | Column             | Type       | Options                            |
 | ------------------ | ---------- | ---------------------------------- |
@@ -50,20 +50,20 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :adress
+- has_one :address
 
-## adressesテーブル
+## addressesテーブル
 
 | Column             | Type       | Options                            |
 | ------------------ | ---------- | ---------------------------------- | 
 | postal_code        | string     | null: false                        |
 | prefecture_id      | integer    | null: false                        |
 | city               | string     | null: false                        |
-| adresses           | string     | null: false                        |
+| addresses          | string     | null: false                        |
 | building           | string     |                                    |
 | phone_number       | string     | null: false                        |
 | purchase           | references | null: false, foreign_key: true     |
 
 
 ### Association
-- belongs_to :purhase
+- belongs_to :purchase
