@@ -1,76 +1,69 @@
 ## usersテーブル
 
-| Column             | Type   | Options             |
-| ------------------ | ------ | ------------------- |
-| email              | string | null: false, UNIQUE |
-| encrypted_password | string | null: false         |
-| nickname           | string | null: false         |
-| last_name          | string | null: false         |
-| first_name         | string | null: false         |
-| last_name_kana     | string | null: false         |
-| first_name_kana    | string | null: false         |
-| birth_year         | string | null: false         |
-| birth_month        | string | null: false         |
-| birth_day          | string | null: false         |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| nickname           | string | null: false               |
+| last_name          | string | null: false               |
+| first_name         | string | null: false               |
+| last_name_kana     | string | null: false               |
+| first_name_kana    | string | null: false               |
+| date_of_birth      | date   | null: false               |
 
 ### Association
 
 - has_many :items
-- has_many :cards
-- has_many :adresses
+- has_many :purchases
 
 
 ## itemsテーブル
 
-| Column             | Type       | Options                            |
-| ------------------ | ---------- | ---------------------------------- |
-| name               | string     | null: false                        |
-| image              | string     | null: false                        |
-| discription        | string     | null: false                        |
-| category           | string     | null: false                        |
-| sales_status       | string     | null: false                        |
-| fee_status         | string     | null: false                        |
-| prefecture         | string     | null: false                        |
-| scheduled_delivery | string     | null: false                        |
-| price              | string     | null: false                        |
-| user_id            | references | null: false, foreign_key: true |
+| Column                | Type       | Options                            |
+| --------------------- | ---------- | ---------------------------------- |
+| name                  | string     | null: false                        |
+| discription           | integer    | null: false                        |
+| category_id           | integer    | null: false                        |
+| sales_status_id       | integer    | null: false                        |
+| fee_status_id         | integer    | null: false                        |
+| prefecture_id         | integer    | null: false                        |
+| scheduled_delivery_id | integer    | null: false                        |
+| price                 | string     | null: false                        |
+| user                  | references | null: false, foreign_key: true     |
 
 
 ### Association
 
 - belongs_to :user
+- has_one :purchase
 
 
-## cardsテーブル
+## Purchasesテーブル
 
 | Column             | Type       | Options                            |
 | ------------------ | ---------- | ---------------------------------- |
-| number             | string     | null: false                        |
-| exp_month          | string     | null: false                        |
-| exp_year           | string     | null: false                        |
-| cvc                | string     | null: false                        |
-| user_id            | references | null: false, foreign_key: true     |
+| user               | references | null: false, foreign_key: true     |
+| item               | references | null: false, foreign_key: true     |
 
 
 ## Association
 
 - belongs_to :user
+- belongs_to :item
 - has_one :adress
 
 ## adressesテーブル
 
 | Column             | Type       | Options                            |
-| ------------------ | ------     | ---------------------------------- | 
-| postal_code        | string     | null: false                        |
-| prefecture         | string     | null: false                        |
+| ------------------ | ---------- | ---------------------------------- | 
+| postal_code_id     | integer    | null: false                        |
+| prefecture_id      | integer    | null: false                        |
 | city               | string     | null: false                        |
 | adresses           | string     | null: false                        |
 | building           | string     |                                    |
 | phone_number       | string     | null: false                        |
-| user_id            | references | null: false, foreign_key: true     |
+| purchase           | references | null: false, foreign_key: true     |
 
 
 ### Association
-
-- belongs_to :user 
-- belongs_to :card
+- belongs_to :purhase
