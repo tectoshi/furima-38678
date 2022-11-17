@@ -22,7 +22,7 @@
 | Column                | Type       | Options                            |
 | --------------------- | ---------- | ---------------------------------- |
 | name                  | string     | null: false                        |
-| discription           | integer    | null: false                        |
+| discription           | text       | null: false                        |
 | category_id           | integer    | null: false                        |
 | sales_status_id       | integer    | null: false                        |
 | fee_status_id         | integer    | null: false                        |
@@ -56,7 +56,7 @@
 
 | Column             | Type       | Options                            |
 | ------------------ | ---------- | ---------------------------------- | 
-| postal_code_id     | integer    | null: false                        |
+| postal_code        | string     | null: false                        |
 | prefecture_id      | integer    | null: false                        |
 | city               | string     | null: false                        |
 | adresses           | string     | null: false                        |
