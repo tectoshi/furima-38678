@@ -1,10 +1,7 @@
 class FeeStatus < ActiveHash::Base
   self.data = [
     { id: 1, name: '---' },
-    { id: 2, name: '新品・未使用' },
-    { id: 3, name: '未使用に近い' }
- 
-  include ActiveHash::Associations
-    belongs_to :item
- 
-  end
+    { id: 2, name: '着払い(購入者負担)' },
+    { id: 3, name: '送料込み(出品者負担)' }
+  ]
+ end
