@@ -3,10 +3,10 @@ function calculation (){
   itemPrice.addEventListener("input", () => {
     const taxPrice = itemPrice.value * 0.1 ;
     const addTaxPrice = document.getElementById("add-tax-price") ;
-    addTaxPrice.innerHTML = `${taxPrice}`;
+    addTaxPrice.innerHTML = `${Math.floor(taxPrice)}`;
     const SalesProfit = itemPrice.value - taxPrice ;
     const profit = document.getElementById("profit") ;
-    profit.innerHTML = `${SalesProfit}`;
+    profit.innerHTML = `${Math.floor(SalesProfit)}`;
   });
 };
 
