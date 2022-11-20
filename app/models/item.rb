@@ -1,11 +1,11 @@
 class Item < ApplicationRecord
-  validates :name
-  validates :description
-  validates :category_id
-  validates :sales_status_id
-  validates :fee_status_id
-  validates :prefecture_id
-  validates :scheduled_delivery_id 
-  validates :price
+  validates :name,                  presence: true
+  validates :description,           presence: true
+  validates :category_id,           presence: true
+  validates :sales_status_id,       presence: true
+  validates :fee_status_id,         presence: true
+  validates :prefecture_id,         presence: true
+  validates :scheduled_delivery_id, presence: true
+  validates :price,                 presence: true
   
 end
