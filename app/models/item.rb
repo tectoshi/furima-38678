@@ -1,8 +1,8 @@
 class Item < ApplicationRecord
   has_one_attached :image
 
-  validates :name,                  presence: true
-  validates :description,           presence: true
+  validates :name,                  presence: true, length: { maximum: 40 }
+  validates :description,           presence: true, length: { maximum: 1000 }
   validates :category_id,           presence: true, 
                                     numericality: { other_than: 1 , message: "can't be blank"}
   validates :sales_status_id,       presence: true, 
@@ -21,6 +21,7 @@ class Item < ApplicationRecord
  
   
   belongs_to :user
+  
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :Category

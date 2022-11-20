@@ -13,47 +13,47 @@ RSpec.describe Item, type: :model do
     end
     context '商品出品ができない' do
       ## 空のテスト
-      it 'nameが空の場合' do
+      it 'nameが空の場合保存できない' do
         @item.name = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Name can't be blank")
       end
-      it 'descriptionが空の場合' do
+      it 'descriptionが空の場合保存できない' do
         @item.description = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
-      it 'category_idが空の場合' do
+      it 'category_idが空の場合保存できない' do
         @item.category_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
-      it 'sales_status_idが空の場合' do
+      it 'sales_status_idが空の場合保存できない' do
         @item.sales_status_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Sales status can't be blank")
       end
-      it 'fee_status_idが空の場合' do
+      it 'fee_status_idが空の場合保存できない' do
         @item.fee_status_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Fee status can't be blank")
       end
-      it 'prefecture_id,が空の場合' do
+      it 'prefecture_id,が空の場合保存できない' do
         @item.prefecture_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
-      it 'scheduled_delivery_idが空の場合' do
+      it 'scheduled_delivery_idが空の場合保存できない' do
         @item.scheduled_delivery_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Scheduled delivery can't be blank")
       end
-      it 'priceが空の場合' do
+      it 'priceが空の場合保存できない' do
         @item.price = ''
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
-      it 'imageが空の場合' do
+      it 'imageが空の場合保存できない' do
         @item.image = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
@@ -61,27 +61,27 @@ RSpec.describe Item, type: :model do
       ##// 空のテスト
       
       ## idが1のテスト
-      it 'category_idが1の場合' do
+      it 'category_idが1の場合保存できない' do
         @item.category_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
-      it 'sales_status_idが1の場合' do
+      it 'sales_status_idが1の場合保存できない' do
         @item.sales_status_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Sales status can't be blank")
       end
-      it 'fee_status_idが1の場合' do
+      it 'fee_status_idが1の場合保存できない' do
         @item.fee_status_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Fee status can't be blank")
       end
-      it 'prefecture_idが1の場合' do
+      it 'prefecture_idが1の場合保存できない' do
         @item.prefecture_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
-      it 'scheduled_delivery_idが1の場合' do
+      it 'scheduled_delivery_idが1の場合保存できない' do
         @item.scheduled_delivery_id = '1'
         @item.valid?
         expect(@item.errors.full_messages).to include("Scheduled delivery can't be blank")
@@ -89,22 +89,22 @@ RSpec.describe Item, type: :model do
       ##// idが1のテスト
 
       ## priceの範囲
-      it 'priceに全角が含まれる場合' do
+      it 'priceに全角が含まれる場合保存できない' do
         @item.price = '１２３４'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
-      it 'priceに半角数字以外が含まれる場合' do
+      it 'priceに半角数字以外が含まれる場合保存できない' do
         @item.price = '300a'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
-      it 'priceが299以下の場合' do
+      it 'priceが299以下の場合保存できない' do
         @item.price = '299'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
-      it 'priceが10000000以上の場合' do
+      it 'priceが10000000以上の場合保存できない' do
         @item.price = '10000000'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
@@ -118,6 +118,19 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("User must exist")
       end
       ##// アソシエーション
+
+      ## 文字数制限
+      it 'nameが41文字以上の場合保存できない' do
+        @item.name = Faker::Lorem.characters(number: 41) 
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Name is too long (maximum is 40 characters)")
+      end
+      it 'descriptionが1000文字以上の時保存できない' do
+        @item.description = Faker::Lorem.characters(number: 1001)
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Description is too long (maximum is 1000 characters)")
+      end
+      ##// 文字数制限
     end
   end
 end
