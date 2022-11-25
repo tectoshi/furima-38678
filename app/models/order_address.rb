@@ -9,6 +9,12 @@ class DonationAddress
     validates :city 
     validates :addresses
     validates :phone_number,  format: { with: /\A[0-9]{10,11}\z/, message: 'is invalid' }
-end
-  validates :building
+  end
+  def save
+    # 購入履歴を保存し、変数orderに代入する
+    order = Order.create(user_id: user_id, :item_id item_id)
+    # 住所を保存する
+    # order_idには、変数orderのidと指定する
+    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, building: building, order_id: order.id)
+  end
 end
