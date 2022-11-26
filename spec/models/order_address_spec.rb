@@ -83,7 +83,11 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Phone number is invalid") 
       end
-      
+      it 'phone_numberが半角数字以外だと購入できない' do
+        @order_address.phone_number = "a１00000000"
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include("Phone number is invalid") 
+      end
     end
   end
 end
